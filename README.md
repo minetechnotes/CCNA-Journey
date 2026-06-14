@@ -1,87 +1,52 @@
-# CCNA-Journey
-My personal CCNA learning notes
-# Networking Fundamentals
+# Home Network Security Basics
 
-## Summary
+Basic notes about router, switch, VLAN, Wi-Fi segmentation, and firewall rules.
 
-Networking is the foundation of computer communication.
-A network allows devices to communicate and share data.
-
-Example:
+## Core Concepts
 
 ```text
-Laptop → WiFi → Router → Internet → Website
+Router = connects network to internet
+Switch = connects local devices
+WAN    = internet input
+LAN    = internal network
+VLAN   = separated virtual network
 ```
 
----
+## Network Segmentation
 
-## Key Concepts
-
-* **Network**: A group of connected devices that can send and receive data.
-* **Switch**: Connects devices inside the same local network.
-* **Router**: Connects different networks, such as a home network to the internet.
-* **IP Address**: A logical address used to identify devices on a network.
-* **MAC Address**: A physical address of a network device.
-* **DNS**: Converts domain names into IP addresses.
-
----
-
-## Switch vs Router
+Separate devices by purpose:
 
 ```text
-Switch = Local Network = MAC Address
-Router = Different Networks = IP Address
+Personal = laptop and phone
+Work     = work laptop
+IoT      = CCTV and smart devices
+Guest    = visitor devices
+Lab      = cybersecurity practice
 ```
 
----
-
-## OSI Model
-
-Important layers to remember:
+## Basic Firewall Rules
 
 ```text
-Layer 7 = Application
-Layer 4 = TCP / UDP
-Layer 3 = IP / Router
-Layer 2 = MAC / Switch
-Layer 1 = Cable / WiFi
+Personal → Internet = Allow
+IoT → Personal      = Block
+Guest → LAN         = Block
+Lab → Personal      = Block
 ```
 
----
-
-## Encapsulation
+## Wi-Fi Security
 
 ```text
-Data → Segment → Packet → Frame → Bits
+Use WPA2/WPA3
+Disable WPS
+Use strong passwords
+Enable guest isolation
+Update router firmware
 ```
 
-Encapsulation means wrapping data before sending it.
+## Key Point
 
----
-
-## De-encapsulation
-
-```
-Bits → Frame → Packet → Segment → Data
+```text
+Do not put all devices in one network.
 ```
 
-De-encapsulation means opening the data when it reaches the destination.
-
----
-
-## Basic Commands
-
-```bash
-ping google.com
-ipconfig
-tracert google.com
-```
-
----
-
-## Conclusion
-
-Networking helps us understand how data moves from one device to another.
-
-
-
+Good network segmentation helps make the network safer and easier to manage.
