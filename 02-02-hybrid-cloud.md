@@ -4,15 +4,15 @@
 
 
 
-\# Hybrid Cloud
+# Hybrid Cloud
 
 
 
-\## Overview
+## Overview
 
 
 
-Hybrid Cloud is an IT infrastructure model that combines \*\*on-premises servers\*\* and \*\*cloud services\*\*.
+Hybrid Cloud is an IT infrastructure model that combines **on-premises servers** and **cloud services**.
 
 
 
@@ -28,11 +28,11 @@ The goal is to place each system in the most suitable environment based on secur
 
 
 
-\---
+---
 
 
 
-\## On-Premises
+## On-Premises
 
 
 
@@ -44,17 +44,17 @@ Best for:
 
 
 
-\* Sensitive data
+* Sensitive data
 
-\* Internal systems
+* Internal systems
 
-\* Payroll data
+* Payroll data
 
-\* Cashier systems
+* Cashier systems
 
-\* Factory systems
+* Factory systems
 
-\* CCTV storage
+* CCTV storage
 
 
 
@@ -70,11 +70,11 @@ On-Premises = Control + Security + Local Performance
 
 
 
-\---
+---
 
 
 
-\## Cloud
+## Cloud
 
 
 
@@ -86,15 +86,15 @@ Best for:
 
 
 
-\* Websites
+* Websites
 
-\* Mobile apps
+* Mobile apps
 
-\* Online services
+* Online services
 
-\* Public applications
+* Public applications
 
-\* High-traffic systems
+* High-traffic systems
 
 
 
@@ -110,11 +110,11 @@ Cloud = Speed + Flexibility + Scalability
 
 
 
-\---
+---
 
 
 
-\## Hybrid Cloud Example
+## Hybrid Cloud Example
 
 
 
@@ -142,11 +142,11 @@ This helps the company use cloud for scalability and on-premises for control and
 
 
 
-\---
+---
 
 
 
-\## Why Not Use Only Cloud?
+## Why Not Use Only Cloud?
 
 
 
@@ -158,15 +158,15 @@ Some systems need:
 
 
 
-\* Strong security
+* Strong security
 
-\* Low latency
+* Low latency
 
-\* Compliance
+* Compliance
 
-\* Local access
+* Local access
 
-\* Better cost control
+* Better cost control
 
 
 
@@ -190,11 +190,11 @@ CCTV storage
 
 
 
-\---
+---
 
 
 
-\## Main Challenges
+## Main Challenges
 
 
 
@@ -206,15 +206,15 @@ Common challenges:
 
 
 
-\* Different platforms
+* Different platforms
 
-\* Network complexity
+* Network complexity
 
-\* Security risks
+* Security risks
 
-\* Access control issues
+* Access control issues
 
-\* Higher operational effort
+* Higher operational effort
 
 
 
@@ -222,11 +222,11 @@ Without proper management, Hybrid Cloud can create security and performance prob
 
 
 
-\---
+---
 
 
 
-\## Cybersecurity Relevance
+## Cybersecurity Relevance
 
 
 
@@ -238,15 +238,15 @@ Common risks:
 
 
 
-\* Misconfigured cloud storage
+* Misconfigured cloud storage
 
-\* Weak VPN access
+* Weak VPN access
 
-\* Exposed admin dashboards
+* Exposed admin dashboards
 
-\* Poor firewall rules
+* Poor firewall rules
 
-\* Over-permissioned accounts
+* Over-permissioned accounts
 
 
 
@@ -254,23 +254,23 @@ Useful for learning:
 
 
 
-\* Cloud Security
+* Cloud Security
 
-\* SOC
+* SOC
 
-\* Penetration Testing
+* Penetration Testing
 
-\* DevSecOps
+* DevSecOps
 
-\* Security Engineering
-
-
-
-\---
+* Security Engineering
 
 
 
-\## Summary
+---
+
+
+
+## Summary
 
 
 
@@ -287,6 +287,7 @@ Hybrid Cloud = Balance between both
 
 
 Hybrid Cloud is a smart strategy to use the right environment for the right system.
+
 
 
 
