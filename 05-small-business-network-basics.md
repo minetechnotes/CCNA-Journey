@@ -284,13 +284,5 @@ Test everything
 
 Troubleshoot step by step
 
-```
-
-
-
-```
-
-```
-
 
 
