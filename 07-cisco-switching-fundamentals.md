@@ -1,6 +1,4 @@
-Switching Fundamentals — MAC Tables, ARP, and Port Tracing
-
-
+Cisco Switching Fundamentals
 
 
 
@@ -8,11 +6,11 @@ Switching Fundamentals — MAC Tables, ARP, and Port Tracing
 
 
 
-This lab covers the fundamentals of Cisco Layer 2 switching, including MAC address learning, ARP, MAC address table inspection, trunk verification, and device port tracing.
+This lab covers Cisco Layer 2 switching fundamentals, including MAC address learning, ARP, MAC address table inspection, trunk verification, and device port tracing.
 
 
 
-Main troubleshooting workflow:
+Main workflow:
 
 
 
@@ -20,13 +18,11 @@ Main troubleshooting workflow:
 
 IP Address → ARP → MAC Address → Switch Port
 
-````
+```
 
 
 
-
-
-\## Lab Objectives
+\## Objectives
 
 
 
@@ -42,11 +38,7 @@ IP Address → ARP → MAC Address → Switch Port
 
 \* Verify trunk links between switches
 
-\* Document interfaces using descriptions
-
-
-
-
+\* Document interfaces with descriptions
 
 
 
@@ -54,23 +46,33 @@ IP Address → ARP → MAC Address → Switch Port
 
 
 
-| Concept           | Description                                                       |
+\*\*Switch\*\*
 
-| ----------------- | ----------------------------------------------------------------- |
-
-| Switch            | Connects devices in a LAN and forwards frames using MAC addresses |
-
-| MAC Address       | Physical address of a network device                              |
-
-| ARP               | Maps an IP address to a MAC address                               |
-
-| MAC Address Table | Stores learned MAC addresses and their switch ports               |
-
-| Trunk             | Carries traffic for multiple VLANs between switches               |
+Connects devices in a LAN and forwards frames using MAC addresses.
 
 
 
+\*\*MAC Address\*\*
 
+A physical address assigned to a network device.
+
+
+
+\*\*ARP\*\*
+
+Maps an IP address to a MAC address.
+
+
+
+\*\*MAC Address Table\*\*
+
+Stores learned MAC addresses and the switch ports where they are located.
+
+
+
+\*\*Trunk\*\*
+
+Carries traffic for multiple VLANs between switches.
 
 
 
@@ -96,8 +98,6 @@ service password-encryption
 
 
 
-
-
 \## Management IP Configuration
 
 
@@ -118,10 +118,6 @@ ip default-gateway 192.168.10.1
 
 
 
-
-
-
-
 \## Save Configuration
 
 
@@ -134,7 +130,7 @@ copy running-config startup-config
 
 
 
-or:
+or
 
 
 
@@ -146,31 +142,39 @@ wr
 
 
 
-
-
-
-
 \## Verification Commands
 
 
 
-| Command                       | Purpose                                    |
+```bash
 
-| ----------------------------- | ------------------------------------------ |
+show ip interface brief
 
-| `show ip interface brief`     | Check interface IP address and status      |
+show interfaces status
 
-| `show interfaces status`      | Check port status, VLAN, speed, and duplex |
+show interfaces description
 
-| `show interfaces description` | View interface descriptions                |
+show running-config
 
-| `show running-config`         | View active configuration                  |
+show startup-config
 
-| `show startup-config`         | View saved configuration                   |
-
-
+```
 
 
+
+Command purpose:
+
+
+
+\* `show ip interface brief` checks interface IP address and status
+
+\* `show interfaces status` checks port status, VLAN, speed, and duplex
+
+\* `show interfaces description` shows interface descriptions
+
+\* `show running-config` shows the active configuration
+
+\* `show startup-config` shows the saved configuration
 
 
 
@@ -178,25 +182,39 @@ wr
 
 
 
-| Command                                        | Purpose                                     |
+```bash
 
-| ---------------------------------------------- | ------------------------------------------- |
+ping <IP\_ADDRESS>
 
-| `ping <IP\_ADDRESS>`                            | Test connectivity and trigger ARP           |
+show arp
 
-| `show arp`                                     | View IP-to-MAC mappings                     |
+show mac address-table
 
-| `show mac address-table`                       | Display learned MAC addresses               |
+show mac address-table address <MAC\_ADDRESS>
 
-| `show mac address-table address <MAC\_ADDRESS>` | Locate a specific device                    |
+show mac address-table interface <INTERFACE>
 
-| `show mac address-table interface <INTERFACE>` | View MAC addresses learned on one interface |
+clear mac address-table dynamic
 
-| `clear mac address-table dynamic`              | Clear dynamically learned MAC entries       |
-
-
+```
 
 
+
+Command purpose:
+
+
+
+\* `ping <IP\_ADDRESS>` tests connectivity and triggers ARP
+
+\* `show arp` displays IP-to-MAC mappings
+
+\* `show mac address-table` displays learned MAC addresses
+
+\* `show mac address-table address <MAC\_ADDRESS>` locates a specific device
+
+\* `show mac address-table interface <INTERFACE>` shows MAC addresses learned on one interface
+
+\* `clear mac address-table dynamic` clears dynamically learned MAC entries
 
 
 
@@ -204,21 +222,31 @@ wr
 
 
 
-| Command                     | Purpose                                   |
+```bash
 
-| --------------------------- | ----------------------------------------- |
+show interfaces trunk
 
-| `show interfaces trunk`     | Verify trunk ports and allowed VLANs      |
+show vlan brief
 
-| `show vlan brief`           | View VLANs and assigned ports             |
+show cdp neighbors
 
-| `show cdp neighbors`        | Discover directly connected Cisco devices |
+show cdp neighbors detail
 
-| `show cdp neighbors detail` | View detailed neighbor information        |
-
-
+```
 
 
+
+Command purpose:
+
+
+
+\* `show interfaces trunk` verifies trunk ports and allowed VLANs
+
+\* `show vlan brief` shows VLANs and assigned ports
+
+\* `show cdp neighbors` discovers directly connected Cisco devices
+
+\* `show cdp neighbors detail` shows detailed neighbor information
 
 
 
@@ -238,7 +266,7 @@ PC7 IP Address: 192.168.1.118
 
 
 
-\### Step 1: Generate Traffic
+Step 1: Generate traffic.
 
 
 
@@ -250,7 +278,7 @@ ping 192.168.1.118
 
 
 
-\### Step 2: Find the MAC Address
+Step 2: Find the MAC address.
 
 
 
@@ -274,7 +302,7 @@ Example result:
 
 
 
-\### Step 3: Find the Switch Port
+Step 3: Find the switch port.
 
 
 
@@ -300,7 +328,7 @@ VLAN    MAC Address       Type       Port
 
 
 
-Final mapping:
+Final result:
 
 
 
@@ -309,8 +337,6 @@ Final mapping:
 PC7 = Switch6 Et0/1
 
 ```
-
-
 
 
 
@@ -338,8 +364,6 @@ copy running-config startup-config
 
 
 
-
-
 \## Troubleshooting Checklist
 
 
@@ -363,10 +387,6 @@ copy running-config startup-config
 \* Add interface descriptions
 
 \* Save the configuration
-
-
-
-
 
 
 
@@ -399,8 +419,6 @@ show interfaces <INTERFACE>
 copy running-config startup-config
 
 ```
-
-
 
 
 
