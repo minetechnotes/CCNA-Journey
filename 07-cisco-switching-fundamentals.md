@@ -1,4 +1,4 @@
-CCNA Journey #5: Cisco Switching Fundamentals
+Cisco Switching Fundamentals
 
 
 
