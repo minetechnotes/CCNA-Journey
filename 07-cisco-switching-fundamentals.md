@@ -2,6 +2,8 @@ Switching Fundamentals — MAC Tables, ARP, and Port Tracing
 
 
 
+
+
 \## Overview
 
 
@@ -19,6 +21,8 @@ Main troubleshooting workflow:
 IP Address → ARP → MAC Address → Switch Port
 
 ````
+
+
 
 
 
@@ -42,6 +46,10 @@ IP Address → ARP → MAC Address → Switch Port
 
 
 
+
+
+
+
 \## Key Concepts
 
 
@@ -59,6 +67,10 @@ IP Address → ARP → MAC Address → Switch Port
 | MAC Address Table | Stores learned MAC addresses and their switch ports               |
 
 | Trunk             | Carries traffic for multiple VLANs between switches               |
+
+
+
+
 
 
 
@@ -84,6 +96,8 @@ service password-encryption
 
 
 
+
+
 \## Management IP Configuration
 
 
@@ -101,6 +115,10 @@ exit
 ip default-gateway 192.168.10.1
 
 ```
+
+
+
+
 
 
 
@@ -128,6 +146,10 @@ wr
 
 
 
+
+
+
+
 \## Verification Commands
 
 
@@ -145,6 +167,10 @@ wr
 | `show running-config`         | View active configuration                  |
 
 | `show startup-config`         | View saved configuration                   |
+
+
+
+
 
 
 
@@ -170,6 +196,10 @@ wr
 
 
 
+
+
+
+
 \## Trunk and VLAN Verification
 
 
@@ -185,6 +215,10 @@ wr
 | `show cdp neighbors`        | Discover directly connected Cisco devices |
 
 | `show cdp neighbors detail` | View detailed neighbor information        |
+
+
+
+
 
 
 
@@ -278,6 +312,8 @@ PC7 = Switch6 Et0/1
 
 
 
+
+
 \## Interface Documentation
 
 
@@ -299,6 +335,8 @@ end
 copy running-config startup-config
 
 ```
+
+
 
 
 
@@ -325,6 +363,10 @@ copy running-config startup-config
 \* Add interface descriptions
 
 \* Save the configuration
+
+
+
+
 
 
 
@@ -357,6 +399,8 @@ show interfaces <INTERFACE>
 copy running-config startup-config
 
 ```
+
+
 
 
 
