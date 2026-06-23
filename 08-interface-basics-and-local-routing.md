@@ -70,9 +70,7 @@ Example:
 
 interface FastEthernet0/1
 
-&#x20;description Front\_Register\_PC
-
-```
+description Front\_Register\_PC
 
 
 
