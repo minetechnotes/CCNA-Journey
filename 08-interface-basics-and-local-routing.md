@@ -52,7 +52,7 @@ Useful commands:
 
 ```cisco
 
-show ip interface brief
+show Ip interface brief
 
 show interfaces status
 
@@ -70,7 +70,7 @@ Example:
 
 interface FastEthernet0/1
 
-description Front\_Register\_PC
+description Front Register PC
 
 
 
@@ -148,15 +148,15 @@ A Layer 2 switch needs a management IP for remote access.
 
 ```cisco
 
-interface vlan 1
+interface VLAN 1
 
-&#x20;ip address 192.168.0.2 255.255.255.0
+&#x20;Ip address 192.168.0.2 255.255.255.0
 
 &#x20;no shutdown
 
 
 
-ip default-gateway 192.168.0.1
+Ip default-gateway 192.168.0.1
 
 ```
 
@@ -212,7 +212,7 @@ On Cafe-RT1:
 
 ```cisco
 
-ip route 192.168.84.0 255.255.255.0 10.8.0.2
+Ip route 192.168.84.0 255.255.255.0 10.8.0.2
 
 ```
 
@@ -224,7 +224,7 @@ On Fallout-RT1:
 
 ```cisco
 
-ip route 192.168.42.0 255.255.255.0 10.8.0.1
+Ip route 192.168.42.0 255.255.255.0 10.8.0.1
 
 ```
 
@@ -240,17 +240,17 @@ Static routes allow each router to reach the remote LAN.
 
 ```cisco
 
-show ip interface brief
+show IP interface brief
 
 show interfaces description
 
 show interface Ethernet0/0
 
-show ip route
+show IP route
 
-show ip route static
+show Ip route static
 
-show arp
+show Arp
 
 ping
 
