@@ -1,4 +1,4 @@
-VLAN and Trunking Basics
+VLAN and TRUNKING Basics
 
 
 
@@ -72,17 +72,17 @@ VLAN 40 = Management
 
 conf t
 
-vlan 10
+VLAN 10
 
 &#x20;name ADMIN
 
-vlan 20
+VLAN 20
 
 &#x20;name GUEST
 
 end
 
-show vlan brief
+show VLAN brief
 
 ```
 
@@ -106,7 +106,7 @@ interface e0/2
 
 &#x20;switchport mode access
 
-&#x20;switchport access vlan 20
+&#x20;switchport access VLAN 20
 
 ```
 
@@ -156,7 +156,7 @@ interface g0/0.10
 
 &#x20;encapsulation dot1Q 10
 
-&#x20;ip address 10.0.18.1 255.255.255.224
+&#x20;IP address 10.0.18.1 255.255.255.224
 
 ```
 
@@ -172,11 +172,11 @@ interface g0/0.10
 
 ```bash
 
-switchport nonegotiate
+switchport NONEGOTIATE
 
-vtp mode transparent
+VTP mode transparent
 
-switchport trunk native vlan 99
+switchport trunk native VLAN 99
 
 ```
 
@@ -208,13 +208,13 @@ Recommended actions:
 
 ```bash
 
-show vlan brief
+show VLAN brief
 
 show interfaces trunk
 
-show ip interface brief
+show IP interface brief
 
-show ip dhcp binding
+show IP DHCP binding
 
 ```
 
