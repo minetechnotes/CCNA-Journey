@@ -1,4 +1,4 @@
-VLAN and TRUNKING Basics
+VLAN and Trunking Basics
 
 
 
