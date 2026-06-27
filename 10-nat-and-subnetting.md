@@ -1,266 +1,125 @@
-NAT \& Subnetting
+VLAN and Trunking Basics
 
+## Overview
 
+VLANs separate a flat network into smaller logical networks.
+This improves security, reduces broadcast traffic, and makes the network easier to manage.
 
-\## Overview
+---
 
+## Core Concepts
 
+| Term                    | Meaning                        |
+| ----------------------- | ------------------------------ |
+| VLAN                    | Logical network segment        |
+| Access Port             | Carries one VLAN               |
+| Trunk Port              | Carries multiple VLANs         |
+| 802.1Q                  | VLAN tagging                   |
+| Router / Layer 3 Switch | Connects different VLANs       |
+| Native VLAN             | Handles untagged trunk traffic |
 
-Basic summary of \*\*NAT\*\*, \*\*Subnetting\*\*, \*\*VLSM\*\*, and IP planning.
+---
 
-
+## Example VLAN Design
 
 ```text
-
-NAT        = Private IP → Public IP
-
-Subnetting = Large network → Smaller networks
-
-VLSM       = Different subnet sizes based on need
-
+VLAN 10 = Admin
+VLAN 20 = Guest
+VLAN 30 = CCTV
+VLAN 40 = Management
 ```
 
+---
 
+## Basic VLAN Configuration
 
-\---
-
-
-
-\## NAT
-
-
-
-\*\*NAT\*\* allows private devices to access the internet using a public IP.
-
-
-
-| Type               | Function                                       |
-
-| ------------------ | ---------------------------------------------- |
-
-| Static NAT         | 1 private IP = 1 public IP                     |
-
-| Dynamic NAT        | Private IPs use a public IP pool               |
-
-| PAT / NAT Overload | Many private IPs share 1 public IP using ports |
-
-
-
-\### Basic PAT Config
-
-
-
-```cisco
-
-access-list 1 permit 192.168.1.0 0.0.0.255
-
-
-
-interface ethernet0/0
-
-&#x20;ip nat inside
-
-
-
-interface ethernet0/1
-
-&#x20;ip nat outside
-
-
-
-ip nat inside source list 1 interface ethernet0/1 overload
-
+```bash
+conf t
+vlan 10
+ name ADMIN
+vlan 20
+ name GUEST
+end
+show vlan brief
 ```
 
+---
 
+## Access Port
 
-\### Verify
+Access ports are used for end devices such as PCs, printers, servers, and cameras.
 
-
-
-```cisco
-
-show ip nat translations
-
-show ip nat statistics
-
+```bash
+interface e0/2
+ switchport mode access
+ switchport access vlan 20
 ```
 
+---
 
+## Trunk Port
 
-\---
+Trunk ports are used between switches, routers, Layer 3 switches, or wireless access points.
 
+```bash
+interface e0/1
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+```
 
+---
 
-\## Subnetting
+## Inter-VLAN Routing
 
+Different VLANs cannot communicate through a Layer 2 switch only.
+Use a router, Layer 3 switch, or Router-on-a-Stick.
 
+```bash
+interface g0/0.10
+ encapsulation dot1Q 10
+ ip address 10.0.18.1 255.255.255.224
+```
 
-\*\*Subnetting\*\* splits a large network into smaller networks.
+---
 
+## Security Best Practices
 
+```bash
+switchport nonegotiate
+vtp mode transparent
+switchport trunk native vlan 99
+```
 
-\### Benefits
+Recommended actions:
 
+* Disable automatic trunk negotiation
+* Use VTP transparent mode
+* Use a dedicated native VLAN
+* Shutdown unused ports
+* Avoid using VLAN 1 for production users
 
+---
 
-\* Saves IP addresses
+## Verification Commands
 
-\* Reduces broadcast traffic
+```bash
+show vlan brief
+show interfaces trunk
+show ip interface brief
+show ip dhcp binding
+```
 
-\* Improves security
+---
 
-\* Makes troubleshooting easier
-
-\* Supports growth
-
-
-
-\### Common CIDR
-
-
-
-| CIDR | Usable Hosts |
-
-| ---- | -----------: |
-
-| /24  |          254 |
-
-| /26  |           62 |
-
-| /27  |           30 |
-
-| /30  |            2 |
-
-
-
-\---
-
-
-
-\## Subnet Rule
-
-
+## Key Takeaways
 
 ```text
-
-Mask → Increment → Range → Network \& Broadcast
-
+VLAN   = Separates networks
+Access = Carries one VLAN
+Trunk  = Carries multiple VLANs
+802.1Q = VLAN tag
+Router = Connects VLANs
+DHCP   = Assigns IP automatically
 ```
 
-
-
-Example:
-
-
-
-```text
-
-IP:        192.168.5.22
-
-Mask:      255.255.255.240
-
-Increment: 16
-
-
-
-Network:   192.168.5.16
-
-Hosts:     192.168.5.17 - 192.168.5.30
-
-Broadcast: 192.168.5.31
-
-```
-
-
-
-\---
-
-
-
-\## VLSM
-
-
-
-\*\*VLSM\*\* uses different subnet sizes in one network.
-
-
-
-```text
-
-50 hosts → /26
-
-20 hosts → /27
-
-2 hosts  → /30
-
-```
-
-
-
-Rule:
-
-
-
-```text
-
-Start from the largest subnet first.
-
-```
-
-
-
-\---
-
-
-
-\## IP Planning
-
-
-
-Count all devices, not only users.
-
-
-
-```text
-
-Laptop, Phone, Printer, CCTV, AP, Server, POS, IoT, Guest WiFi
-
-```
-
-
-
-Key mindset:
-
-
-
-```text
-
-Humans ≠ IP addresses
-
-```
-
-
-
-\---
-
-
-
-\## Summary
-
-
-
-```text
-
-NAT        = Internet access for private IPs
-
-PAT        = Many private IPs share one public IP
-
-Subnetting = Smaller and cleaner networks
-
-VLSM       = Efficient subnet sizing
-
-IP Plan    = Design for devices and growth
-
-```
-
+A good network design is segmented, secure, scalable, and easy to troubleshoot.
