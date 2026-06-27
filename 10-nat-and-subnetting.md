@@ -1,125 +1,133 @@
-VLAN and Trunking Basics
+NAT & Subnetting
 
 ## Overview
 
-VLANs separate a flat network into smaller logical networks.
-This improves security, reduces broadcast traffic, and makes the network easier to manage.
+Basic summary of **NAT**, **Subnetting**, **VLSM**, and IP planning.
 
----
-
-## Core Concepts
-
-| Term                    | Meaning                        |
-| ----------------------- | ------------------------------ |
-| VLAN                    | Logical network segment        |
-| Access Port             | Carries one VLAN               |
-| Trunk Port              | Carries multiple VLANs         |
-| 802.1Q                  | VLAN tagging                   |
-| Router / Layer 3 Switch | Connects different VLANs       |
-| Native VLAN             | Handles untagged trunk traffic |
-
----
-
-## Example VLAN Design
-
-```text
-VLAN 10 = Admin
-VLAN 20 = Guest
-VLAN 30 = CCTV
-VLAN 40 = Management
+```
+NAT        = Private IP → Public IP
+Subnetting = Large network → Smaller networks
+VLSM       = Different subnet sizes based on need
 ```
 
 ---
 
-## Basic VLAN Configuration
+## NAT
 
-```bash
-conf t
-vlan 10
- name ADMIN
-vlan 20
- name GUEST
-end
-show vlan brief
+**NAT** allows private devices to access the internet using a public IP.
+
+| Type | Function |
+| --- | --- |
+| Static NAT | 1 private IP = 1 public IP |
+| Dynamic NAT | Private IPs use a public IP pool |
+| PAT / NAT Overload | Many private IPs share 1 public IP using ports |
+
+### Basic PAT Config
+
+```
+access-list 1 permit 192.168.1.0 0.0.0.255
+
+interface ethernet0/0
+ Ip Nat inside
+
+interface ethernet0/1
+ Ip Nat outside
+
+Ip Nat inside source list 1 interface ethernet0/1 overload
+```
+
+### Verify
+
+```
+show Ip Nat translations
+show Ip Nat statistics
 ```
 
 ---
 
-## Access Port
+## Subnetting
 
-Access ports are used for end devices such as PCs, printers, servers, and cameras.
+**Subnetting** splits a large network into smaller networks.
 
-```bash
-interface e0/2
- switchport mode access
- switchport access vlan 20
+### Benefits
+
+- Saves IP addresses
+- Reduces broadcast traffic
+- Improves security
+- Makes troubleshooting easier
+- Supports growth
+
+### Common CIDR
+
+| CIDR | Usable Hosts |
+| --- | --- |
+| /24 | 254 |
+| /26 | 62 |
+| /27 | 30 |
+| /30 | 2 |
+
+---
+
+## Subnet Rule
+
+```
+Mask → Increment → Range → Network & Broadcast
+```
+
+Example:
+
+```
+IP:        192.168.5.22
+Mask:      255.255.255.240
+Increment: 16
+
+Network:   192.168.5.16
+Hosts:     192.168.5.17 - 192.168.5.30
+Broadcast: 192.168.5.31
 ```
 
 ---
 
-## Trunk Port
+## VLSM
 
-Trunk ports are used between switches, routers, Layer 3 switches, or wireless access points.
+**VLSM** uses different subnet sizes in one network.
 
-```bash
-interface e0/1
- switchport trunk encapsulation dot1q
- switchport mode trunk
+```
+50 hosts → /26
+20 hosts → /27
+2 hosts  → /30
+```
+
+Rule:
+
+```
+Start from the largest subnet first.
 ```
 
 ---
 
-## Inter-VLAN Routing
+## IP Planning
 
-Different VLANs cannot communicate through a Layer 2 switch only.
-Use a router, Layer 3 switch, or Router-on-a-Stick.
+Count all devices, not only users.
 
-```bash
-interface g0/0.10
- encapsulation dot1Q 10
- ip address 10.0.18.1 255.255.255.224
+```
+Laptop, Phone, Printer, CCTV, AP, Server, POS, IoT, Guest WiFi
+```
+
+Key mindset:
+
+```
+Humans ≠ IP addresses
 ```
 
 ---
 
-## Security Best Practices
+## Summary
 
-```bash
-switchport nonegotiate
-vtp mode transparent
-switchport trunk native vlan 99
 ```
-
-Recommended actions:
-
-* Disable automatic trunk negotiation
-* Use VTP transparent mode
-* Use a dedicated native VLAN
-* Shutdown unused ports
-* Avoid using VLAN 1 for production users
-
----
-
-## Verification Commands
-
-```bash
-show vlan brief
-show interfaces trunk
-show ip interface brief
-show ip dhcp binding
+NAT        = Internet access for private IPs
+PAT        = Many private IPs share one public IP
+Subnetting = Smaller and cleaner networks
+VLSM       = Efficient subnet sizing
+IP Plan    = Design for devices and growth
 ```
-
----
-
-## Key Takeaways
-
-```text
-VLAN   = Separates networks
-Access = Carries one VLAN
-Trunk  = Carries multiple VLANs
-802.1Q = VLAN tag
-Router = Connects VLANs
-DHCP   = Assigns IP automatically
-```
-
-A good network design is segmented, secure, scalable, and easy to troubleshoot.
