@@ -74,11 +74,11 @@ conf t
 
 VLAN 10
 
-\-name ADMIN
+name ADMIN
 
 VLAN 20
 
-\-name GUEST
+name GUEST
 
 end
 
@@ -104,9 +104,9 @@ Access ports are used for end devices such as PCs, printers, servers, and camera
 
 interface e0/2
 
-\-switchport mode access
+switchport mode access
 
-\-switchport access VLAN 20
+switchport access VLAN 20
 
 ```
 
@@ -128,9 +128,9 @@ Trunk ports are used between switches, routers, Layer 3 switches, or wireless ac
 
 interface e0/1
 
-\-switchport trunk encapsulation dot1q
+switchport trunk encapsulation dot1q
 
-\-switchport mode trunk
+switchport mode trunk
 
 ```
 
@@ -154,9 +154,9 @@ Use a router, Layer 3 switch, or Router-on-a-Stick.
 
 interface g0/0.10
 
-\-encapsulation dot1Q 10
+encapsulation dot1Q 10
 
-\-IP address 10.0.18.1 255.255.255.224
+IP address 10.0.18.1 255.255.255.224
 
 ```
 
