@@ -232,21 +232,29 @@ configure terminal
 
 interface range Ethernet0/1-2
 
-&#x20;switchport trunk encapsulation dot1q
 
-&#x20;switchport mode trunk
 
-&#x20;switchport trunk allowed vlan all
+```text
 
-&#x20;channel-group 1 mode active
+switchport trunk encapsulation dot1q
+
+switchport mode trunk
+
+switchport trunk allowed vlan all
+
+channel-group 1 mode active
 
 
 
 interface Port-channel1
 
-&#x20;switchport mode trunk
 
-&#x20;switchport trunk allowed vlan all
+
+```text
+
+switchport mode trunk
+
+switchport trunk allowed vlan all
 
 
 
